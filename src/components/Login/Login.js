@@ -1,25 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import initialAuthentication from '../../Firebase/firebase.init';
+import useAuth from '../../hooks/useAuth';
+// import useFirebase from '../../hooks/useFirebase';
 import './Login.css'
 
+
+initialAuthentication()
+
 const Login = () => {
+    const {googleSignin} = useAuth()
     return (
         <div>
             <div className='mt-5 form-info'>
-            <form>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="email" required/>
+            <div>
+                <div className="mb-3">
+                    <label htmlFor="email" className="form-label">Email address</label>
+                    <input type="email" className="form-control" id="email"/>
                 </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" required/>
+                <div className="mb-3">
+                    <label htmlFor="password" className="form-label">Password</label>
+                    <input type="password" className="form-control" id="password" />
                 </div>
-                <button type="submit" class="btn btn-primary mb-2">Login</button>
+                <button type="submit" className="mb-2 btn btn-primary">Login</button>
                 <p>New user? <Link to='/register'>Create your account</Link></p>
                 <br/>
-                <button className='btn btn-outline-dark w-100'><i class="fab fa-google"></i>   Google Signin</button>
-            </form>
+                <button onClick={googleSignin} className='btn btn-outline-dark w-100'><i className="fab fa-google"></i> Google Signin</button>
+                </div>
             </div>
         </div>
     );
